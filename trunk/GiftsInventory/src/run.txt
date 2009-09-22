@@ -1,0 +1,8 @@
+ECHO Starting application ...
+ECHO "PATH"
+ECHO %PATH%
+SET CLASSPATH=%CLASSPATH%;.
+ECHO "CLASSPATH"
+ECHO %CLASSPATH%
+
+C:\j2sdk1.4.2_13\bin\java giftsmaker.StartMenu

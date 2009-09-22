@@ -1,0 +1,12 @@
+IV1;SoftCloth;10
+IV2;Buttons;10
+IV3;Wheels;10
+IV4;Alloy;10
+IV5;Fibre;10
+IV6;lights;23
+IV7;Batteries;12
+IV8;Remote sensor;11
+IV9;Timer;23
+IV10;Laser light;7
+IV11;Plastic;2
+IV12;Name stickers;3

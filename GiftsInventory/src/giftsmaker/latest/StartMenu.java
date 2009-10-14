@@ -12,6 +12,7 @@ package giftsmaker.latest;
 import giftsmaker.GiftsConstants;
 import giftsmaker.GiftsUtil;
 import giftsmaker.common.CommandProcessor;
+import giftsmaker.common.MoveResources;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class StartMenu {
         
         // Check whether Database file exists before application is started
         GiftsUtil.validateFile(GiftsConstants.STOCKSFILE_XML);
+        new MoveResources().moveAllResources();
         CommandProcessor processor=new CUICommandProcessor();
         
         int inputNum = 0;
@@ -45,6 +47,7 @@ public class StartMenu {
             System.out.println("3  -> Can I make a product with available inventory?");
             System.out.println("4  -> Store inventory data to the STOCKFILE.XML");
             System.out.println("5  -> Load inventory data from the STOCKFILE.XML");
+            System.out.println("6 -> Add new Inventory item");
             System.out.print("Input choice:");
             
             try {

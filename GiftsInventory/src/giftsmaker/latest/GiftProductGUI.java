@@ -16,7 +16,10 @@ import giftsmaker.common.GiftProduct;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.swing.JScrollPane;
@@ -116,7 +119,7 @@ public class GiftProductGUI implements GiftProduct{
     /**
      * Show all gifts
      */
-    public  JTable showGifts() {
+    public  Object showGifts() {
     	JTable jt = new JTable( data, fields );
         JScrollPane pane = new JScrollPane( jt );
         return jt;
@@ -124,7 +127,7 @@ public class GiftProductGUI implements GiftProduct{
     /**
      * Same as show all gifts method, this shows serial number
      */
-    public  JTable showGiftsWithSno() {
+    public  Object showGiftsWithSno() {
     	 String data[][] = new String[gifts.length][3];
     	 String fields[] = {"Sno","Product Name", "Price"};
     	String result="**** All Availbale Products ***\n";
@@ -141,7 +144,7 @@ public class GiftProductGUI implements GiftProduct{
      * Check manfacturing decision by comparing required and avaible qunatity for a specific product
      * @param inputNum  Sequence number as shown in display
      */
-    public String checkRequiredInventory(int inputNum) {
+    public Object checkRequiredInventory(int inputNum) {
     	String result="";
         try{
             String str = null;
@@ -153,10 +156,11 @@ public class GiftProductGUI implements GiftProduct{
             Gift checkGift = gifts[inputNum-1];
             Hashtable ht = checkGift.getMaterial();
             //Open the file for both reading and writing
-            RandomAccessFile rand = new RandomAccessFile(GiftsConstants.STOCKSFILE,"r");
+            RandomAccessFile rand = new RandomAccessFile(GiftsConstants.TMP_FOLDER+GiftsConstants.STOCKSFILE,"r");
             rand.seek(0);  //Seek to start point of file
+            InventoryMgt.inventoryItemCount=1;
             while((str=rand.readLine()) != null) {
-                
+            	InventoryMgt.inventoryItemCount++;
                 StringTokenizer fields = new StringTokenizer(str,";");
                 key = fields.nextToken();
                 name = fields.nextToken();
@@ -192,5 +196,28 @@ public class GiftProductGUI implements GiftProduct{
 	public void setGifts(Gift[] gifts) {
 		this.gifts = gifts;
 	}
-    
+	
+	public void addNewInventoryItem(String name, int quantity) {
+		InventoryMgt.addNewInventory(name, quantity);		
+	}
+	public void addNewProduct(String name,float cost,String invtory,int invQty){
+		String newData[][] = new String[data.length+1][3];
+		for(int i=0;i<data.length;i++)
+			for(int j=0;j<3;j++)
+				newData[i][j]=data[i][j];
+		newData[data.length]=new String[]{name,new Float(cost).toString(),invtory};
+		data=newData;
+		//List dataList= Arrays.asList(data);		
+		//dataList.add(new String[]{name,new Float(cost).toString(),invtory});
+		Gift[] gifts= getGifts();
+		Gift newGift = new Gift();
+		newGift.setGiftName(name);
+		newGift.setGiftPrice(cost);
+		Hashtable material = new Hashtable();
+		material.put(invtory, new Integer(invQty));
+		newGift.setMaterial(material);
+		gifts[data.length]=newGift;
+		//dataList.add(new Gift[]);
+		
+	}
 }

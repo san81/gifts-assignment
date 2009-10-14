@@ -21,11 +21,15 @@ public class GiftsConstants {
     /**
      * Database File
      */
-    public static final String STOCKSFILE = "STOCKSFILE.TXT";
+    public static final String STOCKSFILE = "stocksfile.txt";
     /**
      * XML Database File Which stores the products inventory
      */
-    public static final String STOCKSFILE_XML = "STOCKSFILE.XML";
+    public static final String STOCKSFILE_XML = "stocksfile.xml";
+    /**
+     * XML Database File Which stores the products inventory
+     */
+    public static final String TMP_FOLDER = "c:/tmp/";
     /**
      * Nunber of Products
      */
@@ -36,5 +40,7 @@ public class GiftsConstants {
     public static final String JMENUITEM_CHECK_REQUIRED="Check RequiredInventory";
     public static final String JMENUITEM_SAVE_INVENTORY="Save Inventory";
     public static final String JMENUITEM_LOAD_INVENTORY="Load Inventory";
+    public static final String JMENUITEM_ADD_INVENTORY="Add new Inventory";
+    public static final String JMENUITEM_ADD_PRODUCT="Add new Product";
     
 }

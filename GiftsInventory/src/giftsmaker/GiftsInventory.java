@@ -9,6 +9,8 @@
 
 package giftsmaker;
 
+import giftsmaker.common.MoveResources;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -41,8 +43,8 @@ public class GiftsInventory {
         String fileLine = null;
         
         try {
-            fis = new FileInputStream(file);
-            dis = new DataInputStream(fis);
+        	 fis = new FileInputStream(file);
+            dis = new DataInputStream(this.getClass().getClassLoader().getResourceAsStream(fileName));
             bis = new BufferedReader(new InputStreamReader(dis));
             
             while ((fileLine =bis.readLine()) != null) {
@@ -67,34 +69,27 @@ public class GiftsInventory {
     }
     
     public JTable showStocksGUI(final String fileName){
-    	String data[][] = new String[12][12];
+    	String data[][] = new String[50][12];
 
         String fields[] = {"Inventory Code", "Name", "Quantity"};
-        
-        String result="";
-        File file = new File(fileName);
-        FileInputStream fis = null;
-        BufferedReader bis = null;
-        DataInputStream dis = null;
         String fileLine = null;
+        BufferedReader bis = null;
         
-        try {
-            fis = new FileInputStream(file);
-            dis = new DataInputStream(fis);
-            bis = new BufferedReader(new InputStreamReader(dis));
-            int row=0;
+        try {   
+             bis = MoveResources.getInventoryFileStream();
+             int row=0;
             while ((fileLine =bis.readLine()) != null) {
                 // Read a record and write to console
             	StringTokenizer tokenizer = new StringTokenizer(fileLine,";");
-            	for(int col=0;col<tokenizer.countTokens();col++)
+            	int tokensCount=tokenizer.countTokens();
+            	for(int col=0;col<tokensCount;col++)
             		data[row][col]=tokenizer.nextToken(); 
             	row++;
             }
             
-            // Release all the resources right afrer proceessing.
-            fis.close();
+            // Release all the resources right afrer proceessing.           
             bis.close();
-            dis.close();
+            //dis.close();
            
         } catch (FileNotFoundException e) {
             System.out.println("Database File could not be located.");

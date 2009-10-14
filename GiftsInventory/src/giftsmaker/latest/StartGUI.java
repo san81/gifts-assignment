@@ -6,6 +6,7 @@ package giftsmaker.latest;
 //
 import giftsmaker.GiftsConstants;
 import giftsmaker.common.CommandProcessor;
+import giftsmaker.common.MoveResources;
 import giftsmaker.listeners.MyClient;
 import giftsmaker.listeners.MyServer;
 
@@ -26,7 +27,7 @@ import javax.swing.border.BevelBorder;
 public class StartGUI {
 
 	private JMenuBar menuBar;
-	private JFrame frame = new JFrame("Action Example");
+	private JFrame frame = new JFrame("Welcome to Gifts company");
 	public Component centerComponent;
 	CommandProcessor processor = new GUICommandProcessor();
 
@@ -47,7 +48,8 @@ public class StartGUI {
 		menu.add(new JMenuItem(new SampleAction("Check RequiredInventory")));
 		menu.add(new JMenuItem(new SampleAction("Save Inventory")));
 		menu.add(new JMenuItem(new SampleAction("Load Inventory")));
-
+		menu.add(new JMenuItem(new SampleAction("Add new Inventory")));
+		menu.add(new JMenuItem(new SampleAction("Add new Product")));
 	}
 
 	class SampleAction extends AbstractAction {
@@ -71,22 +73,27 @@ public class StartGUI {
 				commandNo = 4;
 			else if (GiftsConstants.JMENUITEM_LOAD_INVENTORY.equals(command))
 				commandNo = 5;
+			else if (GiftsConstants.JMENUITEM_ADD_INVENTORY.equals(command))
+				commandNo = 6;
+			else if (GiftsConstants.JMENUITEM_ADD_PRODUCT.equals(command))
+				commandNo = 7;
 
 			if (centerComponent != null)
 				frame.remove(centerComponent);
 
 			centerComponent = (Component) processor.processCommand(commandNo);
-			frame.add((Component) centerComponent, BorderLayout.CENTER);
+			frame.getContentPane().add((Component) centerComponent, BorderLayout.CENTER);
 			frame.pack();
 
 			if (commandNo == 3) {
 				Object response = JOptionPane.showInputDialog(centerComponent,
-						"Where would you like to go to lunch?",
+						"check required invetory for the following product?",
 						"Select a Destination", JOptionPane.QUESTION_MESSAGE,
-						null, new Integer[] { 1, 2, 3, 4, 5, 6, 7 }, 2);
+						null, new Object[] { new Integer(1), new Integer(2), new Integer(3),
+						new Integer(4), new Integer(3), new Integer(6), new Integer(7) }, new Integer(2));
 				String productAvailability = "";
 				productAvailability = (String) ((GUICommandProcessor) processor)
-						.checkRequired((Integer) response);
+						.checkRequired(((Integer)response).intValue());
 				if (productAvailability.indexOf("not") != -1)
 					JOptionPane.showMessageDialog(centerComponent,
 							productAvailability);
@@ -108,7 +115,7 @@ public class StartGUI {
 							MyServer.serverStarted=true;
 						}
 						try {
-							MyClient.sendProductMakingOrder((Integer) response);
+							MyClient.sendProductMakingOrder(((Integer)response).intValue());
 						} catch (Exception eee) {
 							eee.printStackTrace();
 						}
@@ -126,14 +133,14 @@ public class StartGUI {
 	}
 
 	public static void main(String s[]) {
+		new MoveResources().moveAllResources();
 		StartGUI example = new StartGUI();
-		JFrame frame = example.getFrame();
-		;
+		JFrame frame = example.getFrame();		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setJMenuBar(example.menuBar);
 		frame.getContentPane().add(new JPanel(), BorderLayout.CENTER);
 		example.setCenterComponent(new JLabel("Welcome to gifts company"));
-		frame.add(example.getCenterComponent(), BorderLayout.CENTER);
+		frame.getContentPane().add(example.getCenterComponent(), BorderLayout.CENTER);
 		frame.setSize(400, 400);
 		frame.setVisible(true);
 	}

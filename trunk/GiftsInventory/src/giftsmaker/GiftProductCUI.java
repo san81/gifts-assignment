@@ -11,10 +11,13 @@ package giftsmaker;
 
 
 import giftsmaker.common.GiftProduct;
+import giftsmaker.latest.InventoryMgt;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.StringTokenizer;
 
 /**
@@ -113,7 +116,7 @@ public class GiftProductCUI implements GiftProduct{
     /**
      * Same as show all gifts method, this shows serial number
      */
-    public  String showGiftsWithSno() {
+    public  Object showGiftsWithSno() {
     	String result="**** All Availbale Products ***\n";
         for(int c=0;c<gifts.length;c++) {
             Gift gf = gifts[c];
@@ -126,7 +129,7 @@ public class GiftProductCUI implements GiftProduct{
      * Check manfacturing decision by comparing required and avaible qunatity for a specific product
      * @param inputNum  Sequence number as shown in display
      */
-    public String checkRequiredInventory(int inputNum) {
+    public Object checkRequiredInventory(int inputNum) {
     	String result="";
         try{
             String str = null;
@@ -138,10 +141,11 @@ public class GiftProductCUI implements GiftProduct{
             Gift checkGift = gifts[inputNum-1];
             Hashtable ht = checkGift.getMaterial();
             //Open the file for both reading and writing
-            RandomAccessFile rand = new RandomAccessFile(GiftsConstants.STOCKSFILE,"r");
+            RandomAccessFile rand = new RandomAccessFile(GiftsConstants.TMP_FOLDER+GiftsConstants.STOCKSFILE,"r");
             rand.seek(0);  //Seek to start point of file
+            InventoryMgt.inventoryItemCount=1;
             while((str=rand.readLine()) != null) {
-                
+            	InventoryMgt.inventoryItemCount++;
                 StringTokenizer fields = new StringTokenizer(str,";");
                 key = fields.nextToken();
                 name = fields.nextToken();
@@ -171,11 +175,21 @@ public class GiftProductCUI implements GiftProduct{
         }
         return result;
     }
+    
 	public Gift[] getGifts() {
 		return gifts;
 	}
 	public void setGifts(Gift[] gifts) {
 		this.gifts = gifts;
 	}
-    
+	
+	public void addNewInventoryItem(String name, int quantity) {
+		InventoryMgt.addNewInventory(name, quantity);
+	}
+	public void addNewProduct(String name,float cost,String invtory,int invQty){
+		String a[][] = new String[gifts.length][3];
+		List dataList= Arrays.asList(gifts);		
+		//dataList.add(new Gift[]);
+		
+	}
 }

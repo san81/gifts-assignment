@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_10" class="java.beans.XMLDecoder"> 
+<java version="1.4.2_10" class="java.beans.XMLDecoder"> 
  <object class="giftsmaker.Gift"> 
   <void property="giftName"> 
    <string>TeddyBear</string> 
@@ -34,12 +34,12 @@
   <void property="material"> 
    <object class="java.util.Hashtable"> 
     <void method="put"> 
-     <string>IV5</string> 
-     <int>3</int> 
-    </void> 
-    <void method="put"> 
      <string>IV11</string> 
      <int>2</int> 
+    </void> 
+    <void method="put"> 
+     <string>IV5</string> 
+     <int>3</int> 
     </void> 
     <void method="put"> 
      <string>IV4</string> 
@@ -90,12 +90,12 @@
      <int>6</int> 
     </void> 
     <void method="put"> 
-     <string>IV4</string> 
-     <int>3</int> 
-    </void> 
-    <void method="put"> 
      <string>IV10</string> 
      <int>2</int> 
+    </void> 
+    <void method="put"> 
+     <string>IV4</string> 
+     <int>3</int> 
     </void> 
    </object> 
   </void> 
@@ -114,12 +114,12 @@
      <int>3</int> 
     </void> 
     <void method="put"> 
-     <string>IV5</string> 
-     <int>6</int> 
-    </void> 
-    <void method="put"> 
      <string>IV11</string> 
      <int>2</int> 
+    </void> 
+    <void method="put"> 
+     <string>IV5</string> 
+     <int>6</int> 
     </void> 
    </object> 
   </void> 

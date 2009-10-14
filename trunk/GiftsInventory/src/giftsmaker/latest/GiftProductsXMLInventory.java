@@ -45,6 +45,7 @@ public class GiftProductsXMLInventory {
 		XMLDecoder decoder=null;
 		Gift[] gifts=null;
 		try {
+			
 			decoder = new XMLDecoder(new BufferedInputStream(
 					new FileInputStream(GiftsConstants.STOCKSFILE_XML)));
 			System.out.println(decoder.getOwner());

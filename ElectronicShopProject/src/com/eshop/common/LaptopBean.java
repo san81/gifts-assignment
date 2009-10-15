@@ -1,5 +1,7 @@
-public class Bean implements Product
-{
+package com.eshop.common;
+
+public class LaptopBean implements Product {
+
 	String id;
 	String make;
 	double price;
@@ -47,6 +49,6 @@ public class Bean implements Product
 
 	public String toString()
 	{
-		return "\n\n\n\n id = "+id+"\n make = "+make+"\n price = "+price+" \n quantity = "+quantity;
+		return "id = "+id+"\n make = "+make+"\n price = "+price+" \n quantity = "+quantity;
 	}
 }

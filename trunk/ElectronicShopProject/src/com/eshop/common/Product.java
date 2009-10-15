@@ -1,3 +1,4 @@
+package com.eshop.common;
 public interface Product
 {
 	public void setProductid(String id);

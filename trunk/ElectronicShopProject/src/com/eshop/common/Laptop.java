@@ -1,7 +1,8 @@
+package com.eshop.common;
 
 import java.util.*;
 
-public class Laptop implements Product {
+public class Laptop {
 
 	public static void main(String args[]) {
 
@@ -9,21 +10,21 @@ public class Laptop implements Product {
 		LaptopBean lb = new LaptopBean();
 		//lb.setProductid(
 		laptoplist.add(1,lb);
-		lb.setPrice(25000.00);
-		lb.setQuantity(25);
-		lb.setProductname("compaq");
+		lb.setProductprice(25000.00);
+		lb.setProductquantity(25);
+		lb.setProductmake("compaq");
 
 		laptoplist.add(2,lb);
-		lb.setPrice(30000.00);
-		lb.setQuantity(5);
-		lb.setProductname("HCL");
+		lb.setProductprice(30000.00);
+		lb.setProductquantity(5);
+		lb.setProductmake("HCL");
 
-		laptoplist.add("L003",lb);
-		lb.setPrice(40000.00);
-		lb.setQuantity(50);
-		lb.setProductname("Lanovo");
+		laptoplist.add(lb);
+		lb.setProductprice(40000.00);
+		lb.setProductquantity(50);
+		lb.setProductmake("Lanovo");
 
-		Iterator it = lb.iterator();
+		Iterator it = laptoplist.iterator();
 		while(it.hasNext()) {
 			System.out.println(it.next());
 		}

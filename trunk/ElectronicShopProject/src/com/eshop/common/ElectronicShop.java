@@ -1,3 +1,4 @@
+package com.eshop.common;
 
 import java.util.*;
 import java.io.*;

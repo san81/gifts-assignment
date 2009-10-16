@@ -27,7 +27,7 @@ public class ElectronicShop {
 		String id,make;
 		int quantity;
 		double price;
-		int quant;
+		
 		
 		lmap = new HashMap();
 
@@ -83,7 +83,7 @@ public class ElectronicShop {
 		String id,make;
 		int quantity;
 		double price;
-		int quant;
+	
 		
 		lmap = new HashMap();
 
@@ -137,7 +137,7 @@ public class ElectronicShop {
 		String id,make;
 		int quantity;
 		double price;
-		int quant;
+		
 		
 		lmap = new HashMap();
 
@@ -191,7 +191,6 @@ public class ElectronicShop {
 		String id,make;
 		int quantity;
 		double price;
-		int quant;
 		
 		lmap = new HashMap();
 

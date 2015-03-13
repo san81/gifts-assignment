@@ -1,0 +1,1 @@
+Assignment for learning XML encoder socket programming and Swing UI
